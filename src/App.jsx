@@ -1,9 +1,14 @@
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function App() {
   const [expenses, setExpenses] = useState([]);
-  const [form, setForm] = useState({ date: "", category: "", amount: "", note: "" });
+  const [form, setForm] = useState({
+    date: "",
+    category: "",
+    amount: "",
+    note: ""
+  });
 
   const categories = [
     "სურსათი",
@@ -20,20 +25,26 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: "sans-serif" }}>
+    <div style={{ padding: 20, fontFamily: "Arial" }}>
       <h1>ხარჯების მართვა</h1>
 
-      <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} /><br /><br />
+      <input type="date" value={form.date}
+        onChange={e => setForm({ ...form, date: e.target.value })} /><br /><br />
 
-      <select value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
+      <select value={form.category}
+        onChange={e => setForm({ ...form, category: e.target.value })}>
         <option value="">კატეგორია</option>
-        {categories.map(c => <option key={c} value={c}>{c}</option>)}
+        {categories.map(c => (
+          <option key={c} value={c}>{c}</option>
+        ))}
       </select><br /><br />
 
-      <input type="number" placeholder="თანხა ₾" value={form.amount}
+      <input type="number" placeholder="თანხა ₾"
+        value={form.amount}
         onChange={e => setForm({ ...form, amount: e.target.value })} /><br /><br />
 
-      <input placeholder="შენიშვნა" value={form.note}
+      <input placeholder="შენიშვნა"
+        value={form.note}
         onChange={e => setForm({ ...form, note: e.target.value })} /><br /><br />
 
       <button onClick={addExpense}>დამატება</button>
